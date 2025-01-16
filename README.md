@@ -9,12 +9,12 @@ The following high-quality blogs are recommended for reading before delving into
 + [KZG polynomial commitments](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html)
 
 ## Intuition
-To effectively leverage the CQ protocol, we can first explore a method to combine these $k$ polynomials into a single polynomial. Intuitively, multiplying these polynomials presents a natural approach, as it seamlessly incorporates the essential log-derivative method (Lemma 2.3).
+To effectively leverage the CQ protocol, we can first explore a method to combine these $k$ polynomials into a single polynomial. Intuitively, multiplying these polynomials presents a natural approach, as it seamlessly incorporates the essential log-derivative method (Lemma 2.4).
 
 Given the n-sparsity of the polynomials $f_1(X),f_2(X),\cdots,f_k(X)$, interpolating the integrated polynomial requires $O(kn)$ Lagrange basis. Consequently, in this batched version of the CQ protocol, the complexity of the prover's work increases to $O(kn \log kn)$, while the complexities of preprocessing, proof size, and verifier's work remain unchanged.
 
 ## Correctness
-Let $f_i(X)=\prod_{j=1}^n(x-f_{i,j})$ and $F(X)=\prod_{i=1}^kf_i(X)$. We will show that, following the approach outlined in Lemma 2.3, verifying the correctness of $F(x)$ is equivalent to verifying the correctness of each $f_i(X)$ individually. To begin, we have:
+Let $f_i(X)=\prod_{j=1}^n(x-f_{i,j})$ and $F(X)=\prod_{i=1}^kf_i(X)$. We will show that, following the approach outlined in Lemma 2.4, verifying the correctness of $F(x)$ is equivalent to verifying the correctness of each $f_i(X)$ individually. To begin, we have:
 $$
 \begin{aligned}
 \frac{d}{dx}\log(F(x))&=\frac{d}{dx}\log(\prod_{i=1}^kf_i(X)) \\
@@ -34,7 +34,7 @@ $$
 \end{aligned}
 $$
 
-Since the above equalities preserve the same structure as those in Lemma 2.3, we can conclude that the correctness of $F(x)$ is equivalent to the correctness of each $f_i(X)$.
+Since the above equalities preserve the same structure as those in Lemma 2.4, we can conclude that the correctness of $F(x)$ is equivalent to the correctness of each $f_i(X)$.
 
 ## Quick Benchmark
 We verify the correctness of both $F(X)$ and $f_i(X)$ in the example provided in [src/lib.rs](src/lib.rs) - `test_bach_roundtrip`.
